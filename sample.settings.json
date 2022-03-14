@@ -1,0 +1,14 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+      "TenantId":  "TENANT_ID",
+      "ClientId": "CLIENT_ID",
+      "ClientSecret": "CLIENT_SECRET",
+      "AzureWebJobsStorage": "",
+      "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+    },
+    "Host":{
+      "CORS":"*"
+    }
+  }
+  

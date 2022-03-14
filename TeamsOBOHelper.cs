@@ -31,7 +31,7 @@ namespace Teams.Apps.HelperFunctions
             string clientId = Environment.GetEnvironmentVariable("ClientId");
             string clientSecret = Environment.GetEnvironmentVariable("ClientSecret");
             string[] downstreamApiScopes = { "https://graph.microsoft.com/.default" };
-            string[] downstreamApiScopesForSPO = { "https://m365x229910.sharepoint.com/AllSites.Read" };
+            string[] downstreamApiScopesForSPO = { "https://m365x229910.sharepoint.com/.default" };
 
             try
             {
@@ -57,8 +57,9 @@ namespace Teams.Apps.HelperFunctions
                 token = req.Query["ssoToken"];
                 tokenFor = req.Query["tokenFor"];
                 log.LogInformation("Here is the id token: "+ token);
-                log.LogInformation("Here is the id token: "+ tokenFor);
+                log.LogInformation("Here is the token for: "+ tokenFor);
                 /*
+                //Use this for POST
                 if (headers.TryGetValue("Authorization", out var authHeader))
                 {
                     if (authHeader[0].StartsWith("Bearer "))
@@ -70,7 +71,7 @@ namespace Teams.Apps.HelperFunctions
                         return new UnauthorizedResult();
                     }
                 }
-                
+                */
                 var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(
                     issuer + "/.well-known/openid-configuration",
                     new OpenIdConnectConfigurationRetriever(),
@@ -82,7 +83,7 @@ namespace Teams.Apps.HelperFunctions
                 {
                     throw new Exception("Token validation failed.");
                 }
-                */
+                
                 UserAssertion userAssertion = new UserAssertion(token);
                 
                 AuthenticationResult result = await app.AcquireTokenOnBehalfOf(tokenFor=="spo" ? downstreamApiScopesForSPO : downstreamApiScopes, userAssertion).ExecuteAsync();
