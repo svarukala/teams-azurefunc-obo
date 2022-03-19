@@ -58,7 +58,7 @@ namespace Teams.Apps.HelperFunctions
                 tokenFor = req.Query["tokenFor"];
                 log.LogInformation("Here is the id token: "+ token);
                 log.LogInformation("Here is the token for: "+ tokenFor);
-                /*
+                
                 //Use this for POST
                 if (headers.TryGetValue("Authorization", out var authHeader))
                 {
@@ -71,7 +71,7 @@ namespace Teams.Apps.HelperFunctions
                         return new UnauthorizedResult();
                     }
                 }
-                */
+                
                 var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(
                     issuer + "/.well-known/openid-configuration",
                     new OpenIdConnectConfigurationRetriever(),
