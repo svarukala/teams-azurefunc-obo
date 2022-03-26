@@ -31,7 +31,8 @@ namespace Teams.Apps.HelperFunctions
             string clientId = Environment.GetEnvironmentVariable("ClientId");
             string clientSecret = Environment.GetEnvironmentVariable("ClientSecret");
             string[] downstreamApiScopes = { "https://graph.microsoft.com/.default" };
-            string[] downstreamApiScopesForSPO = { "https://m365x229910.sharepoint.com/.default" };
+            string[] downstreamApiScopesForSPO = { Environment.GetEnvironmentVariable("SPO_DEFAULT_SCOPE") };
+            //{ "https://m365x229910.sharepoint.com/.default" };
 
             try
             {
@@ -54,9 +55,9 @@ namespace Teams.Apps.HelperFunctions
                 var headers = req.Headers;
                 var token = string.Empty;
                 var tokenFor = string.Empty;
-                token = req.Query["ssoToken"];
+                //token = req.Query["ssoToken"];
                 tokenFor = req.Query["tokenFor"];
-                log.LogInformation("Here is the id token: "+ token);
+                //log.LogInformation("Here is the id token: "+ token);
                 log.LogInformation("Here is the token for: "+ tokenFor);
                 
                 //Use this for POST
